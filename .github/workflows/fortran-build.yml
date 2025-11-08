@@ -43,6 +43,12 @@ jobs:
           build-type: debug
           toolchain: {compiler: gcc, version: '12', build: fpm}
 
+        - os: macos-latest
+          build-type: debug
+          toolchain: {compiler: gcc, version: '14', build: meson}
+          meson_args_static: -Ddefault_library=static
+
+
         # - os: windows-latest
         #   build: meson
         #   build-type: debug
@@ -139,6 +145,7 @@ jobs:
         COVERAGE: ${{ matrix.build-type == 'coverage' }}
         MESON_ARGS: >-
           ${{ contains(matrix.os, 'windows') && '-Dfortran_link_args=-Wl,--allow-multiple-definition' || '' }}
+          ${{ matrix.meson_args_static }}
 
     - name: Configure build (CMake)
       if: ${{ matrix.toolchain.build == 'cmake' }}
