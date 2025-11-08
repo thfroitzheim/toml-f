@@ -19,8 +19,8 @@ jobs:
         os: [ubuntu-latest, macos-latest]
         build-type: [debug]
         toolchain:
-          - {compiler: gcc, version: '12', build: meson}
-          - {compiler: gcc, version: '12', build: cmake}
+          - {compiler: gcc, version: '14', build: meson}
+          - {compiler: gcc, version: '14', build: cmake}
 
         include:
         - os: ubuntu-latest
